@@ -1,1 +1,1 @@
-# substrings
+# Practice Ruby Projects
