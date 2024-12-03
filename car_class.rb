@@ -27,8 +27,10 @@ class MyCar
   def year=(y)
     @year = y
   end
-  # def spray_paint(color)
-  # end
+  def spray_paint(color)
+    self.color = color
+    puts "The car color is now #{color}"
+  end
 end
 
 car = MyCar.new(2015, 'red', 'Ford')
@@ -38,3 +40,4 @@ car.shut_off
 car.change_color('blue')
 puts car.color
 puts car.year
+car.spray_paint('green')
