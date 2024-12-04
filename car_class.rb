@@ -31,6 +31,12 @@ class MyCar
     self.color = color
     puts "The car color is now #{color}"
   end
+  def self.gas_mileage(gallons, miles)
+    puts "#{miles / gallons} miles per gallon of gas"
+  end
+  def to_s 
+    "My car is a #{color}, #{year}, #{@model}!"
+  end
 end
 
 car = MyCar.new(2015, 'red', 'Ford')
@@ -41,3 +47,8 @@ car.change_color('blue')
 puts car.color
 puts car.year
 car.spray_paint('green')
+MyCar.gas_mileage(10, 300)
+puts car.to_s
+
+my_car = MyCar.new("2010", "Ford", "Focus")
+puts my_car
