@@ -1,14 +1,19 @@
+# frozen_string_literal: true
+
+# rubocop:disable Style/Documentation
 module Towable
   def can_tow?(pounds)
-    pounds < 2000 ? true : false
+    pounds < 2000
   end
 end
 
 class Vehicle
   attr_accessor :color
   attr_reader :year, :model
-  @@number_of_vehicles = 0
 
+  # rubocop:disable Style/ClassVars
+  @@number_of_vehicles = 0
+  # rubocop:enable Style/ClassVars
   def self.gas_mileage(gallons, miles)
     puts "#{miles / gallons} miles per gallon of gas"
   end
@@ -37,7 +42,7 @@ class Vehicle
 
   def shut_off
     @speed = 0
-    puts "Car is shut off"
+    puts 'Car is shut off'
   end
 
   def change_color(c)
@@ -50,39 +55,39 @@ class Vehicle
     puts "The car color is now #{color}"
   end
 
-  def to_s 
+  def to_s
     "My vehicle is a #{color}, #{year}, #{@model}!"
   end
 
   def age
-    "Your #{self.model} is #{years_old} years old."
+    "Your #{model} is #{years_old} years old."
   end
 
   private
 
   def years_old
-    Time.now.year - self.year.to_i
+    Time.now.year - year.to_i
   end
 end
 
 class MyCar < Vehicle
   NUMBER_OF_DOORS = 4
-  
+
   def to_s
-    "My car is a #{self.color}, #{self.year}, #{self.model}!"
+    "My car is a #{color}, #{year}, #{model}!"
   end
 end
 
 class MyTruck < Vehicle
   include Towable
-  
+
   NUMBER_OF_DOORS = 2
-  
+
   def to_s
-    "My truck is a #{self.color}, #{self.year}, #{self.model}!"
+    "My truck is a #{color}, #{year}, #{model}!"
   end
 end
-
+# rubocop:enable Style/Documentation
 car = MyCar.new(2015, 'red', 'Ford')
 car.speed_up(20)
 car.brake(10)
@@ -92,9 +97,9 @@ puts car.color
 puts car.year
 car.spray_paint('green')
 MyCar.gas_mileage(10, 300)
-puts car.to_s
+puts car
 
-my_car = MyCar.new("2010", "Ford", "Focus")
+my_car = MyCar.new('2010', 'Ford', 'Focus')
 puts my_car
 
 Vehicle.number_of_vehicles

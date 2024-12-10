@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# rubocop:disable metrics/method_length
 def bubble_sort(array)
   n = array.length
   loop do
@@ -12,7 +15,7 @@ def bubble_sort(array)
 
     break unless swapped
   end
-
+  # rubocop:enable metrics/method_length
   array
 end
 

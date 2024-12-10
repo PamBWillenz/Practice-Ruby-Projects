@@ -1,6 +1,7 @@
-class Student
+# frozen_string_literal: true
 
-  def initialize(name, grade) 
+class Student
+  def initialize(name, grade)
     @name = name
     @grade = grade
   end
@@ -11,9 +12,7 @@ class Student
 
   protected
 
-  def grade
-    @grade
-  end
+  attr_reader :grade
 end
 
 class Person
@@ -26,10 +25,9 @@ class Person
   end
 end
 
-bob = Person.new("Bob")
-bob.hi 
+bob = Person.new('Bob')
+bob.hi
 
-
-joe = Student.new("Joe", 90)
-bob = Student.new("Bob", 84)
-puts "Well Done!" if joe.better_grade_than?(bob)
+joe = Student.new('Joe', 90)
+bob = Student.new('Bob', 84)
+puts 'Well Done!' if joe.better_grade_than?(bob)
