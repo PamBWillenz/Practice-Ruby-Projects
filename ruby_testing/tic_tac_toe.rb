@@ -1,6 +1,6 @@
 class TicTacToe
-  def initialize
-    @board = Array.new(3) { Array.new(3, ' ') }
+  def initialize(board = nil)
+    @board = board || Array.new(3) { Array.new(3, ' ') }
     @current_player = 'X'
   end
 
@@ -18,6 +18,21 @@ class TicTacToe
         break
       end
       switch_player
+    end
+  end
+
+  def check_game_state
+    %w[X O].each do |player|
+      @current_player = player
+      if winner?
+        return "Player #{player} wins!"
+      end
+    end
+    
+    if draw?
+      return "It's a draw!"
+    else
+      return "Game is still ongoing."
     end
   end
 
@@ -61,16 +76,28 @@ class TicTacToe
   end
 
   def draw?
-    @board.flatten.none? { |cell| cell == ' ' }
+    @board.flatten.none? { |cell| cell == ' ' || cell.nil? }
   end
 
   def winning_combinations
-    rows = [[0, 0], [0, 1], [0, 2]], [[1, 0], [1, 1], [1, 2]], [[2, 0], [2, 1], [2, 2]]
-    cols = [[0, 0], [1, 0], [2, 0]], [[0, 1], [1, 1], [2, 1]], [[0, 2], [1, 2], [2, 2]]
-    diags = [[0, 0], [1, 1], [2, 2]], [[0, 2], [1, 1], [2, 0]]
+    rows = [[[0, 0], [0, 1], [0, 2]], [[1, 0], [1, 1], [1, 2]], [[2, 0], [2, 1], [2, 2]]]
+    cols = [[[0, 0], [1, 0], [2, 0]], [[0, 1], [1, 1], [2, 1]], [[0, 2], [1, 2], [2, 2]]]
+    diags = [[[0, 0], [1, 1], [2, 2]], [[0, 2], [1, 1], [2, 0]]]
     rows + cols + diags
   end
 end
 
-game = TicTacToe.new
-game.play
+# Function for testing
+def play_game(board)
+  # Convert nil values to ' ' for internal representation
+  normalized_board = board.map do |row|
+    row.map { |cell| cell.nil? ? ' ' : cell }
+  end
+  
+  game = TicTacToe.new(normalized_board)
+  game.check_game_state
+end
+
+# Uncomment the lines below to play interactively
+# game = TicTacToe.new
+# game.play
